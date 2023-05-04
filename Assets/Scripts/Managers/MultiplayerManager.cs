@@ -32,7 +32,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
     
     public void LoginToPhoton()
     {
-        PhotonNetwork.NickName = nicknameInputField.text;
+        //PhotonNetwork.NickName = nicknameInputField.text;
         Debug.Log("Player nickname is " + PhotonNetwork.NickName);
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -63,6 +63,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
+        PhotonNetwork.NickName = nicknameInputField.text;
         createRoomButton.interactable = false;
         PhotonNetwork.JoinOrCreateRoom(roomNameToCreate, new RoomOptions(){MaxPlayers = 8, EmptyRoomTtl = 0},null );
     }
@@ -98,12 +99,13 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        nicknameInputField.interactable = false;
         base.OnPlayerEnteredRoom(newPlayer);
         RefreshCurrentRoomInfoUI();
 
         if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount >= 4)
+            if (PhotonNetwork.CurrentRoom.PlayerCount >= 3)
             {
                 startGameButton.interactable = true;
             }
@@ -112,11 +114,12 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        nicknameInputField.interactable = true;
         base.OnPlayerLeftRoom(otherPlayer);
         RefreshCurrentRoomInfoUI();
         if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount < 4)
+            if (PhotonNetwork.CurrentRoom.PlayerCount < 3)
             {
                 startGameButton.interactable = false;
             }
@@ -134,7 +137,6 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-         
             PhotonNetwork.LoadLevel(1);
         }
     }
@@ -160,7 +162,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
 
     private void RefreshCurrentRoomInfoUI()
     {
-        playerListText.text = string.Empty;
+        playerListText.text = "Players List: " + Environment.NewLine;
         if (PhotonNetwork.CurrentRoom != null)
         {
             currentRoomNameDebugTextUI.text = PhotonNetwork.CurrentRoom.Name;
