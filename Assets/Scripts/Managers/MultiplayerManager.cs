@@ -64,8 +64,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
     public void CreateRoom()
     {
         createRoomButton.interactable = false;
-        PhotonNetwork.JoinOrCreateRoom(roomNameToCreate, new RoomOptions(){MaxPlayers = 20, EmptyRoomTtl = 0},
-            null );
+        PhotonNetwork.JoinOrCreateRoom(roomNameToCreate, new RoomOptions(){MaxPlayers = 8, EmptyRoomTtl = 0},null );
     }
 
     public void LeaveRoom()
@@ -104,7 +103,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+            if (PhotonNetwork.CurrentRoom.PlayerCount >= 4)
             {
                 startGameButton.interactable = true;
             }
@@ -117,7 +116,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
         RefreshCurrentRoomInfoUI();
         if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
+            if (PhotonNetwork.CurrentRoom.PlayerCount < 4)
             {
                 startGameButton.interactable = false;
             }
@@ -146,7 +145,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
         currentRoomNameDebugTextUI.text = string.Empty;
         createRoomButton.interactable = false;
         currentRoomPlayersCountTextUI.text = string.Format(CURRENT_ROOM_PLAYERS_PATTERN,
-            0,0);
+            0,8);
         leaveRoomButton.interactable = false;
         startGameButton.interactable = false;
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -167,6 +166,8 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
             currentRoomNameDebugTextUI.text = PhotonNetwork.CurrentRoom.Name;
             currentRoomPlayersCountTextUI.text = string.Format(CURRENT_ROOM_PLAYERS_PATTERN,
                 PhotonNetwork.CurrentRoom.PlayerCount, PhotonNetwork.CurrentRoom.MaxPlayers);
+            if(PhotonNetwork.CurrentRoom.PlayerCount<4)
+
             foreach (Player photonPlayer in PhotonNetwork.PlayerList)
             {
                 playerListText.text += photonPlayer.NickName + Environment.NewLine;
