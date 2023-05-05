@@ -28,7 +28,7 @@ public class GameManagerData : MonoBehaviourPun
     public List<bool> ChoosedOptions;//attack or run
 
 
-    [SerializeField] private int _playerId => PhotonNetwork.LocalPlayer.ActorNumber;
+    public int PlayerId;
 
 
     private void Awake()
@@ -48,10 +48,10 @@ public class GameManagerData : MonoBehaviourPun
     [PunRPC]
     public void UpdateCurrentGameMaster()
     {
-        if (PhotonNetwork.CountOfPlayers == _playerId)
+        if (PhotonNetwork.CountOfPlayers == PlayerId)
             CurrentGameMaster = 1;
         else
-            CurrentGameMaster = _playerId + 1;
+            CurrentGameMaster = PlayerId + 1;
     }
 
 
