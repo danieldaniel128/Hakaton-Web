@@ -695,6 +695,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 978585439, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8211150157271406983, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
       propertyPath: spawnPoints.Array.data[0]
       value: 
