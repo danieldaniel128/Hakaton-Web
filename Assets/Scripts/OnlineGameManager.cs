@@ -8,9 +8,14 @@ public class OnlineGameManager : MonoBehaviourPun
 {
     public const string NETWORK_PLAYER_PREFAB_NAME = "NetworkPlayerObject";
     public static OnlineGameManager Instance;
-    int newPlayerID = 0;
+    [SerializeField] int newPlayerID = 0;
 
     public PhotonView PhotonView;
+
+
+    GameManagerData gameManagerData;
+    public List<GameManagerData> gameManagerDatas;
+    public int MyPlayerID;
     private void Awake()
     {
         if (Instance == null)
@@ -25,25 +30,20 @@ public class OnlineGameManager : MonoBehaviourPun
     {
         if (PhotonNetwork.IsConnected)
         {
-            GameManagerData gameManagerData = PhotonNetwork.Instantiate("Game Manager Data", Vector3.zero, Quaternion.identity).GetComponent<GameManagerData>();
-            gameManagerData.PlayerId = ++newPlayerID;
-            //PhotonView.RPC("UpdatePlayerId", RpcTarget.AllViaServer, gameManagerData);
+            PhotonView.RPC("UpdatePlayerId", RpcTarget.AllViaServer);
+            MyPlayerID = newPlayerID;
+            Debug.Log("");
         }
     }
     [PunRPC]
-    public void UpdatePlayerId(GameManagerData gameManagerData)
+    public void UpdatePlayerId()
     {
-        gameManagerData.PlayerId = ++newPlayerID;
+        if(gameManagerDatas.Count<PhotonNetwork.CountOfPlayers)
+        gameManagerData = PhotonNetwork.Instantiate("Game Manager Data", Vector3.zero, Quaternion.identity).GetComponent<GameManagerData>();
+        ++newPlayerID;
+        gameManagerData.PlayerId = newPlayerID;
+        gameManagerDatas.Add(gameManagerData);
     }
-
-
-
-
-    //
-    //void UpdateTurn() 
-    //{
-
-    //}
 
 
 }

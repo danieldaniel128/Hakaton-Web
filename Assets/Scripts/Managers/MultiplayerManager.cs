@@ -167,7 +167,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
         {
             currentRoomNameDebugTextUI.text = PhotonNetwork.CurrentRoom.Name;
             currentRoomPlayersCountTextUI.text = string.Format(CURRENT_ROOM_PLAYERS_PATTERN,
-                PhotonNetwork.CurrentRoom.PlayerCount, PhotonNetwork.CurrentRoom.MaxPlayers);
+            PhotonNetwork.CurrentRoom.PlayerCount, PhotonNetwork.CurrentRoom.MaxPlayers);
             foreach (Player photonPlayer in PhotonNetwork.PlayerList)
             {
                 playerListText.text += photonPlayer.NickName + Environment.NewLine;

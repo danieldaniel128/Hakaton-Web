@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject GameMasterScreenPanal;
     [SerializeField] GameObject AdventureScreenPanel;
-   
 
     private void Awake()
     {

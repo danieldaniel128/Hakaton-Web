@@ -31,15 +31,6 @@ public class GameManagerData : MonoBehaviourPun
     public int PlayerId;
 
 
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-        //PhotonView photonView;
-        //_photonView.RPC("ChatMessage", RpcTarget.All, "jup", "and jup.");
-    }
     [PunRPC]
     public void UpdateTurn()
     {
