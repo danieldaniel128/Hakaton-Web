@@ -7,7 +7,7 @@ using UnityEngine;
 public class ActionScriptableObject : ScriptableObject
 {
     public string actionName;
-    GameManagerData.CombatType type;
+    GameManager.CombatType type;
     bool isReady;
 
     void Use()

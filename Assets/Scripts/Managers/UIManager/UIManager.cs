@@ -1,15 +1,16 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [SerializeField] GameObject GameMasterScreenPanal;
-    [SerializeField] GameObject AdventureScreenPanel;
-
+    public GameObject GameMasterScreenPanal;
+    public GameObject AdventureScreenPanel;
+    TextMeshProUGUI playerIdAndNickName;
     private void Awake()
     {
         if (Instance == null)
@@ -17,7 +18,10 @@ public class UIManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
-
+    public void UpdatePlayerIdAndNickName(string str) 
+    {
+        playerIdAndNickName.text = str;
+    }
     public void StartGame()
     {
         //DisableMainMenu();
@@ -28,11 +32,11 @@ public class UIManager : MonoBehaviour
     public void ChangeTurn() 
     {
         OnlineGameManager.Instance.PhotonView.RPC("UpdateTurn", RpcTarget.AllViaServer);
-        ChangeCurrentGameMaster();
+        //ChangeCurrentGameMaster();
     }
-    private void ChangeCurrentGameMaster()
+    public void ChangeCurrentGameMaster()
     {
-        OnlineGameManager.Instance.PhotonView.RPC("UpdateCurrentGameMaster", RpcTarget.AllViaServer);
+        OnlineGameManager.Instance.PhotonView.RPC("UpdateGameMaster", RpcTarget.AllViaServer);
     }
 
 
