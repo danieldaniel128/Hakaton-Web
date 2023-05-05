@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: BardData
   m_EditorClassIdentifier: 
   Name: Bard
+  Actions:
+  - {fileID: 0}
