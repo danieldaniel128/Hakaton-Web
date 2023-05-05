@@ -1,9 +1,25 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : SingletonPUN<GameManager>
 {
+    //Scene
+    [SerializeField] Transform objectSpawnLocation;
+
+    //UI
+    [SerializeField] GameObject NormieUI;
+    [SerializeField] GameObject GMUI;
+
+    int currentPlayerTurn;
+    int playerID;
+
+    private void Start()
+    {
+        
+    }
+
     public enum CombatType
     {
         Damage,
@@ -15,15 +31,4 @@ public class GameManager : Singleton<GameManager>
     CombatType currentMission;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
