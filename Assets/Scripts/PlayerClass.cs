@@ -8,16 +8,17 @@ public abstract class PlayerClass : MonoBehaviour
     bool isAbilityReady;
     public bool isImposter { get; protected set; }
     public bool isTargetable { get; protected set; } = true;
-    public bool isUsingAbility { get; private set; }
+    public bool isUsingAbility { get; protected set; }
     public Vote vote { get; protected set; }
     [SerializeField] public PlayerClass targetPlayer { get; protected set; }
+    [SerializeField] protected Sprite classSprite;
 
     virtual protected void OpenAbilityMenu()
     {
         //open little ui window
     }
 
-    abstract protected void UseAbility(PlayerClass player);
+    public abstract void UseAbility(PlayerClass player);
 
     [ContextMenu("voteyes")]
     public void SetVoteYay()

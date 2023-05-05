@@ -9,10 +9,6 @@ public class Bard : PlayerClass
     //flips the vote or just chooses it?
     public bool charmTo { get; private set; }
 
-    protected override void UseAbility(PlayerClass player)
-    {
-
-    }
 
     [ContextMenu("charm")]
     public void CharmYay()
@@ -23,5 +19,10 @@ public class Bard : PlayerClass
     public void CharmNay()
     {
         charmTo = false;
+    }
+
+    public override void UseAbility(PlayerClass player)
+    {
+
     }
 }

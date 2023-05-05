@@ -4,7 +4,7 @@ using UnityEngine;
 
 public struct Vote
 {
-    PlayerClass player;
+    public PlayerClass player;
     public bool vote;
     //bool isUsingSkill;
     public Vote(PlayerClass p ,bool v)

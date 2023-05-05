@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Druid : PlayerClass
 {
-    protected override void UseAbility(PlayerClass player)
+    public override void UseAbility(PlayerClass player)
     {
         throw new System.NotImplementedException();
     }

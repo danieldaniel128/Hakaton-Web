@@ -17,6 +17,7 @@ public class MissionManager : MonoBehaviour
     [SerializeField] List<PlayerClass> party = new List<PlayerClass>();
     List<Vote> votes = new List<Vote>();
     bool isMissionPassed;
+    bool voteIsAnonymous = false;
 
 
     [ContextMenu("bro")]
@@ -26,7 +27,7 @@ public class MissionManager : MonoBehaviour
         {
             if (player.isUsingAbility)
             {
-
+                UseAbility(player);
             }
         }
 
@@ -39,13 +40,25 @@ public class MissionManager : MonoBehaviour
 
     void CountVotes()
     {
-        if (votes[0].vote && votes[1].vote && votes[2].vote)
+        int votesYes = 0, votesNo = 0;
+        foreach (var vote in votes)
         {
-            isMissionPassed = true;
+            if (vote.vote) votesYes++;
+            else votesNo++;
         }
-        else isMissionPassed = false;
-
         Debug.Log(isMissionPassed);
+        if (voteIsAnonymous)
+        {
+            Debug.Log($"{votesYes} yes, {votesNo} no");
+            voteIsAnonymous = false;
+        }
+        else
+        {
+            foreach (var vote in votes)
+            {
+                Debug.Log(vote.player.GetType() + " " + vote.vote);
+            }
+        }
     }
 
     public void AssisgnParty()
@@ -89,7 +102,7 @@ public class MissionManager : MonoBehaviour
 
                 break;
             case WIZARD:
-
+                voteIsAnonymous = true;
                 break;
             default:
                 break;
