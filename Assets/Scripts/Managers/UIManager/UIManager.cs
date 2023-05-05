@@ -24,7 +24,10 @@ public class UIManager : MonoBehaviour
 
     [Header("Game Master Choose Player Buttons")]
     [SerializeField] List<Button> ChoosePlayersButtons;
+    [SerializeField] List<RectTransform> ChoosePlayerButtonLocations;
     [SerializeField] Sprite ImageSpriteBtn;
+    [SerializeField] RectTransform selectorTransform;
+
 
     [SerializeField] Vector2 startGenerateButtonPosition;
     private void Awake()
@@ -42,14 +45,15 @@ public class UIManager : MonoBehaviour
             GameMasterScreenPanal.SetActive(true);
             for (int i = 0; i < OnlineGameManager.Instance.GetCountOfPlayers(); i++)
             {
-                GameObject newButtonGameObject = new GameObject();
+                GameObject newButtonGameObject = new GameObject("PlayerButton" + (i + 1));
+                newButtonGameObject.transform.SetParent(ChoosePlayerButtonLocations[i], false);
                 Image image = newButtonGameObject.AddComponent<Image>();
                 image.sprite = ImageSpriteBtn;
                 Button button = newButtonGameObject.AddComponent<Button>();
                 RectTransform rectTransformBtn = newButtonGameObject.GetComponent<RectTransform>();
                 ChoosePlayersButtons.Add(button);
-                newButtonGameObject.transform.parent = GameMasterScreenPanal.transform;
-                rectTransformBtn.position= new Vector2(0, startGenerateButtonPosition.y+60*i);
+                rectTransformBtn.anchoredPosition = rectTransformBtn.anchoredPosition;
+                //newButtonGameObject.transform.parent = GameMasterScreenPanal.transform;
             }
         }
         else
