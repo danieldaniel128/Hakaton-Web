@@ -26,12 +26,12 @@ public class OnlineGameManager : MonoBehaviourPun
         if (PhotonNetwork.IsConnected)
         {
             PhotonView PhotonViewGMData = PhotonNetwork.Instantiate("Game Manager Data", Vector3.zero, Quaternion.identity).GetPhotonView();
-            if(PhotonNetwork.IsMasterClient)
+            if(PhotonViewGMData.Owner.IsMasterClient)
                 photonView.ViewID = 1;
         }
     }
    
-
+    
 
     
     //
