@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Photon.Pun;
+using Photon.Realtime;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,7 +10,6 @@ public class OnlineGameManager : MonoBehaviourPun
 {
     public static OnlineGameManager Instance;
 
-    public PhotonView PhotonView;
 
     public int MyPlayerID;
 
@@ -17,7 +18,7 @@ public class OnlineGameManager : MonoBehaviourPun
 
     public List<bool> ChoosedOptions;//attack or run
 
-
+    bool PatricipateInMission;
 
     private void Awake()
     {
@@ -30,15 +31,7 @@ public class OnlineGameManager : MonoBehaviourPun
     {
         MyPlayerID = PhotonNetwork.LocalPlayer.ActorNumber;
     }
-    private void Update()//change later
-    {
-        if (CurrentGameMaster == MyPlayerID) 
-        {
-            UIManager.Instance.GameMasterScreenPanal.SetActive(true);
-        }
-        else
-            UIManager.Instance.GameMasterScreenPanal.SetActive(false);
-    }
+   
 
     [PunRPC]
     public void UpdateTurn()
@@ -66,7 +59,30 @@ public class OnlineGameManager : MonoBehaviourPun
     public void UpdateChoosedOptions(bool choosedOptions) 
     {
         ChoosedOptions.Add(choosedOptions);
+        if (ChoosedOptions.Count == PhotonNetwork.CountOfPlayers)
+            ChecksIfParticipatingInMission();
     }
 
+    void ChecksIfParticipatingInMission() 
+    {
+        if(ChoosedOptions.Count(c=>!c) < PhotonNetwork.CountOfPlayers/2)
+            PatricipateInMission = true;
+    }
+    
+
+    public string[] GetListOfActivePlayers() 
+    {
+        string[] playerNames = new string[PhotonNetwork.CountOfPlayers];
+        for (int i = 0; i < PhotonNetwork.CountOfPlayers; i++)
+        {
+            playerNames[i] = PhotonNetwork.PlayerList[i].NickName;
+
+        }
+        return playerNames;
+    }
+    public int GetCountOfPlayers() 
+    {
+        return PhotonNetwork.CountOfPlayers;
+    }
 
 }

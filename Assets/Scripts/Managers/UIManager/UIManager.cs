@@ -20,12 +20,36 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button Accept_BTN;
     [SerializeField] Button Refuse_BTN;
 
+    [SerializeField] Button GoNextTurn;
+
+    [Header("Game Master Choose Player Buttons")]
+    List<Button> ChoosePlayersButtons;
+
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
         else
             Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        if (OnlineGameManager.Instance.CurrentGameMaster == OnlineGameManager.Instance.MyPlayerID)
+        {
+            GameMasterScreenPanal.SetActive(true);
+            for (int i = 0; i < OnlineGameManager.Instance.GetCountOfPlayers(); i++)
+            {
+                GameObject newButtonGameObject = new GameObject();
+                Button button = newButtonGameObject.AddComponent<Button>();
+                RectTransform rectTransformBtn = newButtonGameObject.GetComponent<RectTransform>();
+                ChoosePlayersButtons.Add(button);
+                newButtonGameObject.transform.parent = GameMasterScreenPanal.transform;
+                //rectTransformBtn=
+            }
+        }
+        else
+            AdventureScreenPanel.SetActive(true);
     }
     public void UpdatePlayerIdAndNickName(string str) 
     {
@@ -40,12 +64,12 @@ public class UIManager : MonoBehaviour
 
     public void ChangeTurn() 
     {
-        OnlineGameManager.Instance.PhotonView.RPC("UpdateTurn", RpcTarget.AllViaServer);
+        OnlineGameManager.Instance.photonView.RPC("UpdateTurn", RpcTarget.AllViaServer);
         //ChangeCurrentGameMaster();
     }
     public void ChangeCurrentGameMaster()
     {
-        OnlineGameManager.Instance.PhotonView.RPC("UpdateGameMaster", RpcTarget.AllViaServer);
+        OnlineGameManager.Instance.photonView.RPC("UpdateGameMaster", RpcTarget.AllViaServer);
     }
 
 
@@ -61,5 +85,19 @@ public class UIManager : MonoBehaviour
         Accept_BTN.interactable = false;
         Refuse_BTN.interactable = false;
     }
+
+
+    public void ActivateGMScreen() 
+    {
+        GameMasterScreenPanal.SetActive(true);
+        AdventureScreenPanel.SetActive(false);
+    }
+
+    public void ActivateAdventureScreen()
+    {
+        GameMasterScreenPanal.SetActive(false);
+        AdventureScreenPanel.SetActive(true);
+    }
+
 
 }
