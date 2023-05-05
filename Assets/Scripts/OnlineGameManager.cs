@@ -30,7 +30,7 @@ public class OnlineGameManager : MonoBehaviourPun
     {
         MyPlayerID = PhotonNetwork.LocalPlayer.ActorNumber;
     }
-    private void Update()
+    private void Update()//change later
     {
         if (CurrentGameMaster == MyPlayerID) 
         {
@@ -61,6 +61,12 @@ public class OnlineGameManager : MonoBehaviourPun
             CurrentGameMaster = 1;
     }
 
+
+    [PunRPC]
+    public void UpdateChoosedOptions(bool choosedOptions) 
+    {
+        ChoosedOptions.Add(choosedOptions);
+    }
 
 
 }
