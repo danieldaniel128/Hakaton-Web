@@ -8,10 +8,9 @@ public class OnlineGameManager : MonoBehaviourPun
 {
     public const string NETWORK_PLAYER_PREFAB_NAME = "NetworkPlayerObject";
     public static OnlineGameManager Instance;
-    public PhotonView PhotonView;
     int newPlayerID = 0;
 
-
+    public PhotonView PhotonView;
     private void Awake()
     {
         if (Instance == null)
@@ -27,13 +26,18 @@ public class OnlineGameManager : MonoBehaviourPun
         if (PhotonNetwork.IsConnected)
         {
             GameManagerData gameManagerData = PhotonNetwork.Instantiate("Game Manager Data", Vector3.zero, Quaternion.identity).GetComponent<GameManagerData>();
-            gameManagerData.PlayerId = ++newPlayerID;
+            PhotonView.RPC("UpdatePlayerId", RpcTarget.AllViaServer);
         }
     }
-   
-    
+    [PunRPC]
+    public void UpdatePlayerId(GameManagerData gameManagerData)
+    {
+        gameManagerData.PlayerId = ++newPlayerID;
+    }
 
-    
+
+
+
     //
     //void UpdateTurn() 
     //{
