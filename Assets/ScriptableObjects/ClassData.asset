@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ClassData
   m_EditorClassIdentifier: 
   Name: 
-  Actions: []
+  Actions:
+  - {fileID: 0}
