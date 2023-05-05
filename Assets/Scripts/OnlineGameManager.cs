@@ -26,7 +26,8 @@ public class OnlineGameManager : MonoBehaviourPun
         if (PhotonNetwork.IsConnected)
         {
             GameManagerData gameManagerData = PhotonNetwork.Instantiate("Game Manager Data", Vector3.zero, Quaternion.identity).GetComponent<GameManagerData>();
-            PhotonView.RPC("UpdatePlayerId", RpcTarget.AllViaServer);
+            gameManagerData.PlayerId = ++newPlayerID;
+            //PhotonView.RPC("UpdatePlayerId", RpcTarget.AllViaServer, gameManagerData);
         }
     }
     [PunRPC]
