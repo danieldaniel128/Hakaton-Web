@@ -8,8 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [SerializeField] GameObject GameMasterScreenPanal;
-    [SerializeField] GameManager AdventureScreenPanel;
-    [SerializeField] int currentTurnTest;
+    [SerializeField] GameObject AdventureScreenPanel;
    
 
     private void Awake()
@@ -29,7 +28,12 @@ public class UIManager : MonoBehaviour
 
     public void ChangeTurn() 
     {
-        OnlineGameManager.Instance.PhotonView.RPC("UpdateDataToLocalPlayers", RpcTarget.AllViaServer, currentTurnTest);
+        OnlineGameManager.Instance.PhotonView.RPC("UpdateTurn", RpcTarget.AllViaServer);
+        ChangeCurrentGameMaster();
+    }
+    private void ChangeCurrentGameMaster()
+    {
+        OnlineGameManager.Instance.PhotonView.RPC("UpdateCurrentGameMaster", RpcTarget.AllViaServer);
     }
 
 
