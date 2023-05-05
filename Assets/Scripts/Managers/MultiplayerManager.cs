@@ -105,7 +105,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount >= 3)
+            if (PhotonNetwork.CurrentRoom.PlayerCount >= 2)
             {
                 startGameButton.interactable = true;
             }
@@ -119,7 +119,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
         RefreshCurrentRoomInfoUI();
         if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount < 3)
+            if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
             {
                 startGameButton.interactable = false;
             }

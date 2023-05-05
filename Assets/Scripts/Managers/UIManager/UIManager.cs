@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject GameMasterScreenPanal;
     [SerializeField] GameManager AdventureScreenPanel;
-    
+    [SerializeField] int currentTurnTest;
    
 
     private void Awake()
@@ -25,6 +26,11 @@ public class UIManager : MonoBehaviour
         //Level1.SetActive(true);
     }
 
+
+    public void ChangeTurn() 
+    {
+        OnlineGameManager.Instance.PhotonView.RPC("UpdateDataToLocalPlayers", RpcTarget.AllViaServer, currentTurnTest);
+    }
 
 
 
