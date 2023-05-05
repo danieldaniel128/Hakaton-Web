@@ -23,8 +23,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button GoNextTurn;
 
     [Header("Game Master Choose Player Buttons")]
-    List<Button> ChoosePlayersButtons;
+    [SerializeField] List<Button> ChoosePlayersButtons;
+    [SerializeField] Sprite ImageSpriteBtn;
 
+    [SerializeField] Vector2 startGenerateButtonPosition;
     private void Awake()
     {
         if (Instance == null)
@@ -41,11 +43,13 @@ public class UIManager : MonoBehaviour
             for (int i = 0; i < OnlineGameManager.Instance.GetCountOfPlayers(); i++)
             {
                 GameObject newButtonGameObject = new GameObject();
+                Image image = newButtonGameObject.AddComponent<Image>();
+                image.sprite = ImageSpriteBtn;
                 Button button = newButtonGameObject.AddComponent<Button>();
                 RectTransform rectTransformBtn = newButtonGameObject.GetComponent<RectTransform>();
                 ChoosePlayersButtons.Add(button);
                 newButtonGameObject.transform.parent = GameMasterScreenPanal.transform;
-                //rectTransformBtn=
+                rectTransformBtn.position= new Vector2(0, startGenerateButtonPosition.y+60*i);
             }
         }
         else
