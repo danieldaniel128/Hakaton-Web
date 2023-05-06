@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
-using Photon.Realtime;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class OnlineGameManager : MonoBehaviourPun
