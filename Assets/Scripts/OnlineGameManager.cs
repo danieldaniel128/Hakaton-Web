@@ -50,14 +50,6 @@ public class OnlineGameManager : MonoBehaviourPun
     public void UpdateTurn()
     {
         CurrentTurn++;
-        //if (CurrentTurn % PhotonNetwork.CountOfPlayers == 0)
-        //{
-        //    CurrentGameMaster = PhotonNetwork.CountOfPlayers;
-        //}
-        //else
-        //{
-        //    CurrentGameMaster = CurrentTurn % PhotonNetwork.CountOfPlayers;
-        //}
     }
     [PunRPC]
     public void UpdateGameMaster() 
@@ -89,7 +81,6 @@ public class OnlineGameManager : MonoBehaviourPun
         for (int i = 0; i < PhotonNetwork.CountOfPlayers; i++)
         {
             playerNames[i] = PhotonNetwork.PlayerList[i].NickName;
-
         }
         return playerNames;
     }
@@ -97,5 +88,18 @@ public class OnlineGameManager : MonoBehaviourPun
     {
         return PhotonNetwork.CountOfPlayers;
     }
+
+
+    //UI
+
+    [PunRPC]
+    public void YesAndNOAdventurer() 
+    {
+        if(!PlayerManager.Instance.ChecksIFSelectedByGM())
+            UIAdventurerScreenManager.Instance.ActivateYesOrNoChooseAdventurer();   
+    }
+
+
+
 
 }
