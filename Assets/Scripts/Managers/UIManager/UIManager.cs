@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<RectTransform> ChoosePlayerButtonLocations;
     [SerializeField] Sprite ImageSpriteBtn;
     [SerializeField] RectTransform selectorTransform;
-
+    [SerializeField] GameObject ButtonPrefab;
 
     [SerializeField] Vector2 startGenerateButtonPosition;
     private void Awake()
@@ -101,22 +101,14 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < OnlineGameManager.Instance.GetCountOfPlayers(); i++)
         {
-            GameObject newButtonGameObject = new GameObject("PlayerButton" + (i + 1));
+            GameObject newButtonGameObject = Instantiate(ButtonPrefab, selectorTransform);
+            newButtonGameObject.name = "PlayerButton" + (i + 1);
             newButtonGameObject.transform.SetParent(ChoosePlayerButtonLocations[i], false);
-            Image image = newButtonGameObject.AddComponent<Image>();
-            image.sprite = ImageSpriteBtn;
-            Button button = newButtonGameObject.AddComponent<Button>();
+            Button button = newButtonGameObject.GetComponent<Button>();
             RectTransform rectTransformBtn = newButtonGameObject.GetComponent<RectTransform>();
-            //GameObject TextPlayer = new GameObject();
-            //TextPlayer.transform.SetParent(rectTransformBtn, false);
-            //TextMeshProUGUI playerName = TextPlayer.AddComponent<TextMeshProUGUI>();
-            //playerName.font = fontAsset;
-            //playerName.text = OnlineGameManager.Instance.GetListOfActivePlayers()[i];
-            //playerName.enableAutoSizing = true;
-            //playerName.autoSizeTextContainer=true;
-            //playerName.color= Color.black;
+            TextMeshProUGUI playerName = newButtonGameObject.GetComponentInChildren<TextMeshProUGUI>();
+            playerName.text = OnlineGameManager.Instance.GetListOfActivePlayers()[i];
             ChoosePlayersButtons.Add(button);
-            rectTransformBtn.anchoredPosition = rectTransformBtn.anchoredPosition;
 
             //newButtonGameObject.transform.parent = GameMasterScreenPanal.transform;
         }

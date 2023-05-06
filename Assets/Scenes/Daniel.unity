@@ -851,6 +851,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 978585439, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
       propertyPath: observableSearch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 978585439, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 978585439, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
+      propertyPath: ObservedComponentsFoldoutOpen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211150157271406983, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
+      propertyPath: ChoosedOptions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211150157271406983, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
+      propertyPath: ChoosedOptions.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211150157271406983, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
+      propertyPath: ChoosedOptions.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211150157271406983, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
+      propertyPath: ChoosedOptions.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211150157271406983, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
+      propertyPath: ChoosedOptions.Array.data[4]
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8211150157271406984, guid: 76f55e9828b05824ab7a01090615d7fe, type: 3}
@@ -1198,6 +1226,7 @@ MonoBehaviour:
   - {fileID: 2065923485}
   ImageSpriteBtn: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   selectorTransform: {fileID: 1053291474}
+  ButtonPrefab: {fileID: 5664233044031814288, guid: 182b12d7dbb8430449ccd8310e0512c4, type: 3}
   startGenerateButtonPosition: {x: 0, y: 0}
 --- !u!1 &1474793229
 GameObject:
