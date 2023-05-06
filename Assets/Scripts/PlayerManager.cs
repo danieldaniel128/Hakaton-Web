@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviourPun
     public int SelectedPlayersCount=0;
     public int[] SelectedPlayers = new int[3];//maybe devide by two of max or value from outside
     public bool IsSelectedPlayer;
-    [SerializeField] PlayerClass PlayerClass;//=casting or something
+    [SerializeField] PlayerClass playerClass;//=casting or something
 
     private void Awake()
     {
@@ -53,35 +53,36 @@ public class PlayerManager : MonoBehaviourPun
             switch(rand)
             {
                 case 0:
-                    PlayerClass = new Bard();
+                    playerClass= new Bard();
                     break;
                 case 1:
-                    PlayerClass= new Barbarian();
+                    playerClass= new Barbarian();
                     break;
                 case 2:
-                    PlayerClass= new Wizard();
+                    playerClass= new Wizard();
                     break;
                 case 3:
-                    PlayerClass= new Sorcerer();
+                    playerClass= new Sorcerer();
                     break;
                 case 4:
-                    PlayerClass= new Rogue();
+                    playerClass= new Rogue();
                     break;
                 case 5:
-                    PlayerClass= new Druid();
+                    playerClass= new Druid();
                     break;
                 case 6:
-                    PlayerClass= new Cleric();
+                    playerClass= new Cleric();
                     break;
                 case 7:
-                    PlayerClass= new Monk();
+                    playerClass= new Monk();
                     break;
 
             }
             assigned = checkIfExists(assigned);
 
         }
-        OnlineGameManager.Instance.photonView.RPC("UpdatePlayerClasses", RpcTarget.AllViaServer,PlayerClass);
+        OnlineGameManager.Instance.newPlayerClass = playerClass;
+        OnlineGameManager.Instance.photonView.RPC("UpdatePlayerClasses", RpcTarget.AllViaServer);
     }
 
     private bool checkIfExists(bool assigned)
@@ -91,7 +92,7 @@ public class PlayerManager : MonoBehaviourPun
 
             foreach (var c in OnlineGameManager.Instance.PlayerClasses)
             {
-                if (PlayerClass == c)
+                if (playerClass == c)
                 {
                     assigned = false; break;
                 }
