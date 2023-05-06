@@ -82,6 +82,15 @@ public class UIManager : MonoBehaviour
         Refuse_BTN.interactable = false;
     }
 
+    public void Pass()
+    {
+
+    }
+
+    public void Fail()
+    {
+
+    }
 
     public void ActivateGMScreen() 
     {
