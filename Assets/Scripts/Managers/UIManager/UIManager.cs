@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 
 
     TextMeshProUGUI playerIdAndNickName;
-
+    [SerializeField] TMP_FontAsset fontAsset;
 
     [Header("Accept Quest Buttons")]
     [SerializeField] Button Accept_BTN;
@@ -105,6 +105,7 @@ public class UIManager : MonoBehaviour
             GameObject TextPlayer = new GameObject();
             TextPlayer.transform.SetParent(rectTransformBtn, false);
             TextMeshProUGUI playerName = TextPlayer.AddComponent<TextMeshProUGUI>();
+            playerName.font = fontAsset;
             playerName.text = OnlineGameManager.Instance.GetListOfActivePlayers()[i];
             playerName.enableAutoSizing = true;
             playerName.autoSizeTextContainer=true;

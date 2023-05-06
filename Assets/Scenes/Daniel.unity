@@ -1182,6 +1182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameMasterScreenPanal: {fileID: 861971083}
   AdventureScreenPanel: {fileID: 1883204867}
+  fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   Accept_BTN: {fileID: 1883204866}
   Refuse_BTN: {fileID: 1883204864}
   GoNextTurn: {fileID: 973239491}
