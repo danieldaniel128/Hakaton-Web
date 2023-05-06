@@ -5,12 +5,12 @@ using UnityEngine;
 public abstract class PlayerClass : MonoBehaviour
 {
     int ID;
-    bool isAbilityReady;
+    [SerializeField] bool isAbilityReady;
     public bool isImposter { get; protected set; }
     public bool isTargetable { get; protected set; } = true;
     public bool isUsingAbility { get; protected set; }
     public Vote vote { get; protected set; }
-    [SerializeField] public PlayerClass targetPlayer { get; protected set; }
+    [SerializeField] public PlayerClass targetPlayer;// { get; protected set; }
     [SerializeField] protected Sprite classSprite;
 
     virtual protected void OpenAbilityMenu()
@@ -46,6 +46,7 @@ public abstract class PlayerClass : MonoBehaviour
     public void CancelAbility()
     {
         isUsingAbility = false;
+        Debug.Log(this.GetType() + " canceled");
     }
 
     public void ReplenishAbility()

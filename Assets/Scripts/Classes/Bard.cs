@@ -21,8 +21,16 @@ public class Bard : PlayerClass
         charmTo = false;
     }
 
+    [ContextMenu("Ability")]
+    public void Ability()
+    {
+        UseAbility(this);
+    }
+
     public override void UseAbility(PlayerClass player)
     {
+        isUsingAbility = true;
 
     }
+
 }

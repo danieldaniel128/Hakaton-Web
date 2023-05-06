@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barbarian : PlayerClass
+public class Sorcerer : PlayerClass
 {
     [ContextMenu("Ability")]
     public void Ability()
@@ -14,8 +14,4 @@ public class Barbarian : PlayerClass
         isUsingAbility = true;
     }
 
-    public void Rage()
-    {
-        isTargetable = false;
-    }
 }
