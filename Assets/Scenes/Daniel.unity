@@ -1188,6 +1188,13 @@ MonoBehaviour:
   ChoosePlayersButtons: []
   ChoosePlayerButtonLocations:
   - {fileID: 1538537871}
+  - {fileID: 703384932}
+  - {fileID: 1613715625}
+  - {fileID: 935909361}
+  - {fileID: 1474793230}
+  - {fileID: 1851063262}
+  - {fileID: 276359433}
+  - {fileID: 2065923485}
   ImageSpriteBtn: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   selectorTransform: {fileID: 1053291474}
   startGenerateButtonPosition: {x: 0, y: 0}
