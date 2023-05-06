@@ -82,12 +82,12 @@ public class UIManager : MonoBehaviour
         Refuse_BTN.interactable = false;
     }
 
-    public void Pass()
+    public void PassQuest()
     {
 
     }
 
-    public void Fail()
+    public void FailQuest()
     {
 
     }
