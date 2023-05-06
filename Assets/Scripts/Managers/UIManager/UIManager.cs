@@ -136,12 +136,14 @@ public class UIManager : MonoBehaviour
                 break;
             }
         }
-        if(PlayerManager.Instance.SelectedPlayers.Length== PlayerManager.Instance.SelectedPlayersCount)
+        if (PlayerManager.Instance.SelectedPlayers.Length == PlayerManager.Instance.SelectedPlayersCount)
+        {
             foreach (Button button in ChoosePlayersButtons)
             {
                 button.interactable = false;
             }
-
+        }
+        OnlineGameManager.Instance.photonView.RPC("UpdateSelectedPlayers", RpcTarget.AllViaServer, PlayerManager.Instance.SelectedPlayers);
     }
 
     void LoadScreen()

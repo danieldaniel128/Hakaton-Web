@@ -16,6 +16,7 @@ public class OnlineGameManager : MonoBehaviourPun
 
     public List<bool> ChoosedOptions;//attack or run
 
+    public int[] SelectedPlayers;
     bool PatricipateInMission;
 
     private void Awake()
@@ -30,7 +31,13 @@ public class OnlineGameManager : MonoBehaviourPun
         MyPlayerID = PhotonNetwork.LocalPlayer.ActorNumber;
         PlayerManager.Instance.PlayerDataInisilize();
     }
-   
+
+    [PunRPC]
+    public void UpdateSelectedPlayers(int[] selectedPlayers) 
+    {
+        SelectedPlayers = selectedPlayers;
+    }
+
 
     [PunRPC]
     public void UpdateTurn()
