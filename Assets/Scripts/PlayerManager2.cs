@@ -23,7 +23,6 @@ public class PlayerManager2 : MonoBehaviourPun
 
     private void Start()
     {
-        PhotonNetwork.Instantiate("PlayerManager2", Vector3.zero, Quaternion.identity);
         AssignClass();
     }
 
