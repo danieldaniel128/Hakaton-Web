@@ -40,25 +40,9 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        if (OnlineGameManager.Instance.CurrentGameMaster == OnlineGameManager.Instance.MyPlayerID)
-        {
-            GameMasterScreenPanal.SetActive(true);
-            for (int i = 0; i < OnlineGameManager.Instance.GetCountOfPlayers(); i++)
-            {
-                GameObject newButtonGameObject = new GameObject("PlayerButton" + (i + 1));
-                newButtonGameObject.transform.SetParent(ChoosePlayerButtonLocations[i], false);
-                Image image = newButtonGameObject.AddComponent<Image>();
-                image.sprite = ImageSpriteBtn;
-                Button button = newButtonGameObject.AddComponent<Button>();
-                RectTransform rectTransformBtn = newButtonGameObject.GetComponent<RectTransform>();
-                ChoosePlayersButtons.Add(button);
-                rectTransformBtn.anchoredPosition = rectTransformBtn.anchoredPosition;
-                //newButtonGameObject.transform.parent = GameMasterScreenPanal.transform;
-            }
-        }
-        else
-            AdventureScreenPanel.SetActive(true);
+        LoadScreen();
     }
+
     public void UpdatePlayerIdAndNickName(string str) 
     {
         playerIdAndNickName.text = str;
@@ -73,7 +57,6 @@ public class UIManager : MonoBehaviour
     public void ChangeTurn() 
     {
         OnlineGameManager.Instance.photonView.RPC("UpdateTurn", RpcTarget.AllViaServer);
-        //ChangeCurrentGameMaster();
     }
     public void ChangeCurrentGameMaster()
     {
@@ -107,5 +90,30 @@ public class UIManager : MonoBehaviour
         AdventureScreenPanel.SetActive(true);
     }
 
+    void LoadScreen() 
+    {
+        for (int i = 0; i < OnlineGameManager.Instance.GetCountOfPlayers(); i++)
+        {
+            GameObject newButtonGameObject = new GameObject("PlayerButton" + (i + 1));
+            newButtonGameObject.transform.SetParent(ChoosePlayerButtonLocations[i], false);
+            Image image = newButtonGameObject.AddComponent<Image>();
+            image.sprite = ImageSpriteBtn;
+            Button button = newButtonGameObject.AddComponent<Button>();
+            RectTransform rectTransformBtn = newButtonGameObject.GetComponent<RectTransform>();
+            ChoosePlayersButtons.Add(button);
+            rectTransformBtn.anchoredPosition = rectTransformBtn.anchoredPosition;
 
+            //newButtonGameObject.transform.parent = GameMasterScreenPanal.transform;
+        }
+
+        if (OnlineGameManager.Instance.CurrentGameMaster == OnlineGameManager.Instance.MyPlayerID)
+        {
+            ActivateGMScreen();
+        }
+        else
+        {
+            ActivateAdventureScreen();
+            selectorTransform.gameObject.SetActive(false);
+        }
+    }
 }
