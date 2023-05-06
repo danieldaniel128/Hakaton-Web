@@ -7,6 +7,7 @@ public class PlayerManager2 : MonoBehaviourPun
 {
     public static PlayerManager2 Instance;
     public int PlayerID;
+    public string ClassName;
     public bool IsGameMaster = false;
     public int SelectedPlayersCount = 0;
     public int[] SelectedPlayers = new int[1];//maybe devide by two of max or value from outside
@@ -79,7 +80,7 @@ public class PlayerManager2 : MonoBehaviourPun
             }
             playerClass.ID = PlayerID;
             assigned = checkIfExists(assigned);
-
+            ClassName=playerClass.ToString();
         }
         OnlineGameManager.Instance.newPlayerClass = playerClass;
         OnlineGameManager.Instance.photonView.RPC("UpdatePlayerClasses", RpcTarget.AllViaServer);
