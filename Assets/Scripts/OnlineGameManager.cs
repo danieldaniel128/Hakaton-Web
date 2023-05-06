@@ -100,6 +100,13 @@ public class OnlineGameManager : MonoBehaviourPun
     }
 
 
-
+    [ContextMenu("print PlayerClasses")]
+    public void PrintPlayerClasses()
+    {
+        foreach(var pc in PlayerClasses)
+        {
+            print(pc);
+        }
+    }
 
 }
