@@ -153,7 +153,7 @@ public class MissionManager : MonoBehaviour
 
     public void AssisgnParty()
     {
-        //assign classes into party
+        
     }
 
 }

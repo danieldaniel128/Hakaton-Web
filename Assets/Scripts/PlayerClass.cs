@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PlayerClass
 {
-    int ID;
+    public int ID;
     [SerializeField] bool isAbilityReady;
     public bool isImposter { get; protected set; }
     public bool isTargetable { get; protected set; } = true;

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviourPun
+public class PlayerManager2 : MonoBehaviourPun
 {
-    public static PlayerManager Instance;
+    public static PlayerManager2 Instance;
     public int PlayerID;
     public bool IsGameMaster = false;
     public int SelectedPlayersCount = 0;
@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviourPun
 
     private void Start()
     {
+        PhotonNetwork.Instantiate("PlayerManager2", Vector3.zero, Quaternion.identity);
         AssignClass();
     }
 

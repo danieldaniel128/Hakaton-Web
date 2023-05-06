@@ -8,7 +8,6 @@ public class OnlineGameManager : MonoBehaviourPun
 {
     public static OnlineGameManager Instance;
 
-
     public int MyPlayerID;
 
     public int CurrentTurn = 1;
@@ -31,7 +30,7 @@ public class OnlineGameManager : MonoBehaviourPun
     private void Start()
     {
         MyPlayerID = PhotonNetwork.LocalPlayer.ActorNumber;
-        PlayerManager.Instance.PlayerDataInisilize();
+        PlayerManager2.Instance.PlayerDataInisilize();
     }
 
     [PunRPC]
@@ -70,8 +69,18 @@ public class OnlineGameManager : MonoBehaviourPun
 
     void ChecksIfParticipatingInMission() 
     {
-        if(ChoosedOptions.Count(c=>!c) < PhotonNetwork.CountOfPlayers/2)
+        if (ChoosedOptions.Count(c => !c) < PhotonNetwork.CountOfPlayers / 2)
+        {
             PatricipateInMission = true;
+            List<PlayerClass> playerClasses = new List<PlayerClass>();
+            foreach (var item in SelectedPlayers)
+            {
+                foreach (var pla in PlayerClasses)
+                {
+                    
+                }
+            }
+        }
     }
     
 
@@ -95,7 +104,7 @@ public class OnlineGameManager : MonoBehaviourPun
     [PunRPC]
     public void YesAndNOAdventurer() 
     {
-        if(!PlayerManager.Instance.ChecksIFSelectedByGM())
+        if(!PlayerManager2.Instance.ChecksIFSelectedByGM())
             UIAdventurerScreenManager.Instance.ActivateYesOrNoChooseAdventurer();
     }
 

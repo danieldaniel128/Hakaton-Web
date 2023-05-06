@@ -141,18 +141,18 @@ public class UIManager : MonoBehaviour
         {
             if (playerNames[i].Equals(selectPlayerName))
             { 
-                PlayerManager.Instance.SelectedPlayers[PlayerManager.Instance.SelectedPlayersCount++] = i + 1;
+                PlayerManager2.Instance.SelectedPlayers[PlayerManager2.Instance.SelectedPlayersCount++] = i + 1;
                 break;
             }
         }
-        if (PlayerManager.Instance.SelectedPlayers.Length == PlayerManager.Instance.SelectedPlayersCount)
+        if (PlayerManager2.Instance.SelectedPlayers.Length == PlayerManager2.Instance.SelectedPlayersCount)
         {
             foreach (Button button in ChoosePlayersButtons)
             {
                 button.interactable = false;
             }
         }
-        OnlineGameManager.Instance.photonView.RPC("UpdateSelectedPlayers", RpcTarget.AllViaServer, PlayerManager.Instance.SelectedPlayers);
+        OnlineGameManager.Instance.photonView.RPC("UpdateSelectedPlayers", RpcTarget.AllViaServer, PlayerManager2.Instance.SelectedPlayers);
         OnlineGameManager.Instance.photonView.RPC("YesAndNOAdventurer", RpcTarget.AllViaServer);
     }
 
