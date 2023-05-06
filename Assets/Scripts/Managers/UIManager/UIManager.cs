@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
     public void ChangeTurn() 
     {
         OnlineGameManager.Instance.photonView.RPC("UpdateTurn", RpcTarget.AllViaServer);
+        ChangeCurrentGameMaster();
     }
     public void ChangeCurrentGameMaster()
     {
