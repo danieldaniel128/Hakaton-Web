@@ -1197,6 +1197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 872725951}
   - component: {fileID: 872725950}
+  - component: {fileID: 872725952}
   m_Layer: 0
   m_Name: music gj slow final
   m_TagString: Untagged
@@ -1214,8 +1215,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9ec4d98e3f3bd504eb17a7f40426da36, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: a61580666dc4ac544b514c572df046fc, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -1315,6 +1316,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &872725952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872725949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62f55d9f662ff6408929d46ed13cf77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 872725950}
 --- !u!1 &893539674
 GameObject:
   m_ObjectHideFlags: 0

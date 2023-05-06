@@ -29,7 +29,10 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
     [SerializeField] private TextMeshProUGUI currentRoomPlayersCountTextUI;
     [SerializeField] private TextMeshProUGUI playerListText;
     [SerializeField] private TextMeshProUGUI roomsListText;
-    
+
+    [Header("AudioSource")]
+    [SerializeField] AudioSource audioSource;
+
     public void LoginToPhoton()
     {
         //PhotonNetwork.NickName = nicknameInputField.text;
@@ -109,6 +112,10 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
             {
                 startGameButton.interactable = true;
             }
+            if(!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
     }
 
@@ -123,6 +130,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
             {
                 startGameButton.interactable = false;
             }
+
         }
     }
 

@@ -1077,6 +1077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651901142}
   - component: {fileID: 651901141}
+  - component: {fileID: 651901143}
   m_Layer: 0
   m_Name: music gj menu final
   m_TagString: Untagged
@@ -1094,8 +1095,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 57b02eebb84c0794c91ac00dd01d24bc, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: dcb7428e267388441ad180cedc13f713, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -1195,6 +1196,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &651901143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651901140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62f55d9f662ff6408929d46ed13cf77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 651901141}
 --- !u!1 &687668392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3507,6 +3521,7 @@ MonoBehaviour:
   currentRoomPlayersCountTextUI: {fileID: 403203359}
   playerListText: {fileID: 1158975213}
   roomsListText: {fileID: 282269605}
+  audioSource: {fileID: 651901141}
 --- !u!1 &2058822008
 GameObject:
   m_ObjectHideFlags: 0
