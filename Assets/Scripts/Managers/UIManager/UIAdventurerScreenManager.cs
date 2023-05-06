@@ -25,9 +25,15 @@ public class UIAdventurerScreenManager : MonoBehaviour
     }
 
 
-    void YesOrNoChooseAdventurer() 
+    public void ActivateYesOrNoChooseAdventurer() 
     {
         _yesAndNoButtons.SetActive(true);
+
+
+    }
+    public void DisableYesOrNoChooseAdventurer()
+    {
+        _yesAndNoButtons.SetActive(false);
 
 
     }
