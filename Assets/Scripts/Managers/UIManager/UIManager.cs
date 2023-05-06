@@ -123,6 +123,7 @@ public class UIManager : MonoBehaviour
         if (OnlineGameManager.Instance.CurrentGameMaster == OnlineGameManager.Instance.MyPlayerID)
         {
             ActivateGMScreen();
+            selectorTransform.gameObject.SetActive(true);
         }
         else
         {
@@ -136,6 +137,7 @@ public class UIManager : MonoBehaviour
         if (OnlineGameManager.Instance.CurrentGameMaster == OnlineGameManager.Instance.MyPlayerID)
         {
             ActivateGMScreen();
+            selectorTransform.gameObject.SetActive(true);
         }
         else
         {
