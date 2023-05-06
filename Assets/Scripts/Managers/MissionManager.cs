@@ -5,6 +5,16 @@ using UnityEngine;
 //instantiate this and assign classes
 public class MissionManager : MonoBehaviour
 {
+    public static MissionManager Instance;
+
+    private void Start()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     const string BARBARIAN = "Barbarian";
     const string BARD = "Bard";
     const string CLERIC = "Cleric";
@@ -33,7 +43,7 @@ public class MissionManager : MonoBehaviour
     };
 
     [ContextMenu("bro")]
-    void GetVotes()
+    public void GetVotes()
     {
         foreach (var player in party)
         {
@@ -51,7 +61,7 @@ public class MissionManager : MonoBehaviour
         CountVotes();
     }
 
-    void PlayAbilities()
+    public void PlayAbilities()
     {
         foreach (var item in classes)
         {
@@ -118,7 +128,7 @@ public class MissionManager : MonoBehaviour
         }
     }
 
-    void CountVotes()
+    public void CountVotes()
     {
         int votesYes = 0, votesNo = 0;
         foreach (var vote in votes)

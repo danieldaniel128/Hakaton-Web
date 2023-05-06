@@ -19,6 +19,8 @@ public class OnlineGameManager : MonoBehaviourPun
     public int[] SelectedPlayers;
     bool PatricipateInMission;
 
+    public List<PlayerClass> PlayerClasses = new();
+    public PlayerClass newPlayerClass;
     private void Awake()
     {
         if (Instance == null)
@@ -33,11 +35,16 @@ public class OnlineGameManager : MonoBehaviourPun
     }
 
     [PunRPC]
+    public void UpdatePlayerClasses()
+    {
+        PlayerClasses.Add(newPlayerClass);
+    }
+
+    [PunRPC]
     public void UpdateSelectedPlayers(int[] selectedPlayers) 
     {
         SelectedPlayers = selectedPlayers;
     }
-
 
     [PunRPC]
     public void UpdateTurn()
