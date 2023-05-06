@@ -43,7 +43,10 @@ public class UIManager : MonoBehaviour
     {
         LoadScreenAndButton();
     }
-
+    private void Update()
+    {
+        LoadScreen();
+    }
     public void UpdatePlayerIdAndNickName(string str) 
     {
         playerIdAndNickName.text = str;
@@ -63,7 +66,6 @@ public class UIManager : MonoBehaviour
     public void ChangeCurrentGameMaster()
     {
         OnlineGameManager.Instance.photonView.RPC("UpdateGameMaster", RpcTarget.AllViaServer);
-        //LoadScreen();
         //Debug.Log("");
     }
 
@@ -104,14 +106,14 @@ public class UIManager : MonoBehaviour
             image.sprite = ImageSpriteBtn;
             Button button = newButtonGameObject.AddComponent<Button>();
             RectTransform rectTransformBtn = newButtonGameObject.GetComponent<RectTransform>();
-            GameObject TextPlayer = new GameObject();
-            TextPlayer.transform.SetParent(rectTransformBtn, false);
-            TextMeshProUGUI playerName = TextPlayer.AddComponent<TextMeshProUGUI>();
-            playerName.font = fontAsset;
-            playerName.text = OnlineGameManager.Instance.GetListOfActivePlayers()[i];
-            playerName.enableAutoSizing = true;
-            playerName.autoSizeTextContainer=true;
-            playerName.color= Color.black;
+            //GameObject TextPlayer = new GameObject();
+            //TextPlayer.transform.SetParent(rectTransformBtn, false);
+            //TextMeshProUGUI playerName = TextPlayer.AddComponent<TextMeshProUGUI>();
+            //playerName.font = fontAsset;
+            //playerName.text = OnlineGameManager.Instance.GetListOfActivePlayers()[i];
+            //playerName.enableAutoSizing = true;
+            //playerName.autoSizeTextContainer=true;
+            //playerName.color= Color.black;
             ChoosePlayersButtons.Add(button);
             rectTransformBtn.anchoredPosition = rectTransformBtn.anchoredPosition;
 
