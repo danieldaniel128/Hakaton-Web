@@ -153,6 +153,7 @@ public class UIManager : MonoBehaviour
             }
         }
         OnlineGameManager.Instance.photonView.RPC("UpdateSelectedPlayers", RpcTarget.AllViaServer, PlayerManager.Instance.SelectedPlayers);
+        OnlineGameManager.Instance.photonView.RPC("YesAndNOAdventurer", RpcTarget.AllViaServer);
     }
 
     void LoadScreen()

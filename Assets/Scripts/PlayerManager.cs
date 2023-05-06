@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviourPun
     public int PlayerID;
     public bool IsGameMaster = false;
     public int SelectedPlayersCount=0;
-    public int[] SelectedPlayers = new int[3];//maybe devide by two of max or value from outside
+    public int[] SelectedPlayers = new int[1];//maybe devide by two of max or value from outside
     public bool IsSelectedPlayer;
     PlayerClass PlayerClass;//=casting or something
 
