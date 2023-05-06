@@ -248,9 +248,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 98933264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b4ea74b81f87d4dad1dae1f711f031, type: 3}
+  m_Script: {fileID: 11500000, guid: 1be60247153a0aa4a8d22753313e2776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAbilityReady: 0
+  targetPlayer: {fileID: 0}
   classSprite: {fileID: 0}
 --- !u!1 &157351095
 GameObject:
@@ -463,6 +465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c900b3e3de39a459724690c4a99e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAbilityReady: 0
+  targetPlayer: {fileID: 98933267}
   classSprite: {fileID: 0}
 --- !u!4 &349380368
 Transform:
@@ -539,6 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c900b3e3de39a459724690c4a99e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAbilityReady: 0
+  targetPlayer: {fileID: 0}
   classSprite: {fileID: 0}
 --- !u!4 &660586816
 Transform:

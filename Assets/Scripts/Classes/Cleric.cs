@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Cleric : PlayerClass
 {
-
+    [ContextMenu("Ability")]
+    public void Ability()
+    {
+        UseAbility(targetPlayer);
+    }
     public override void UseAbility(PlayerClass player)
     {
-        throw new System.NotImplementedException();
+        isUsingAbility = true;
+
     }
+
 }
