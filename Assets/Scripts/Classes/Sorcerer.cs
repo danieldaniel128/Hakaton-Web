@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Sorcerer : PlayerClass
 {
+    public override string abilityDescription { get; protected set; } = "Can see if an ability was used";
+
     [ContextMenu("Ability")]
     public void Ability()
     {

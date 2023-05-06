@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Barbarian : PlayerClass
 {
+    public override string abilityDescription { get; protected set; } = "Gain immunity to abilities";
+
     [ContextMenu("Ability")]
     public void Ability()
     {

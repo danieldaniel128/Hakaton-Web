@@ -18,6 +18,7 @@ public class OnlineGameManager : MonoBehaviourPun
 
     public int[] SelectedPlayers;
     bool PatricipateInMission;
+    public List<PlayerManager> PlayerManagers = new List<PlayerManager>();
 
     public List<PlayerClass> PlayerClasses = new();
     public PlayerClass newPlayerClass;
@@ -34,6 +35,19 @@ public class OnlineGameManager : MonoBehaviourPun
         PlayerManager.Instance.PlayerDataInisilize();
     }
 
+    public void Init()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+
+            foreach (var player in PhotonNetwork.CurrentRoom.Players)
+            {
+                PlayerManagers.Add(PhotonNetwork.Instantiate("PlayerObject", Vector3.zero, Quaternion.identity).GetComponent<PlayerManager>());
+
+            }
+        }
+    }
+
     [PunRPC]
     public void UpdatePlayerClasses()
     {
@@ -41,7 +55,7 @@ public class OnlineGameManager : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void UpdateSelectedPlayers(int[] selectedPlayers) 
+    public void UpdateSelectedPlayers(int[] selectedPlayers)
     {
         SelectedPlayers = selectedPlayers;
     }
@@ -52,7 +66,7 @@ public class OnlineGameManager : MonoBehaviourPun
         CurrentTurn++;
     }
     [PunRPC]
-    public void UpdateGameMaster() 
+    public void UpdateGameMaster()
     {
         CurrentGameMaster++;
         if (CurrentGameMaster == PhotonNetwork.CountOfPlayers + 1)
@@ -61,21 +75,21 @@ public class OnlineGameManager : MonoBehaviourPun
 
 
     [PunRPC]
-    public void UpdateChoosedOptions(bool choosedOptions) 
+    public void UpdateChoosedOptions(bool choosedOptions)
     {
         ChoosedOptions.Add(choosedOptions);
         if (ChoosedOptions.Count == PhotonNetwork.CountOfPlayers)
             ChecksIfParticipatingInMission();
     }
 
-    void ChecksIfParticipatingInMission() 
+    void ChecksIfParticipatingInMission()
     {
-        if(ChoosedOptions.Count(c=>!c) < PhotonNetwork.CountOfPlayers/2)
+        if (ChoosedOptions.Count(c => !c) < PhotonNetwork.CountOfPlayers / 2)
             PatricipateInMission = true;
     }
-    
 
-    public string[] GetListOfActivePlayers() 
+
+    public string[] GetListOfActivePlayers()
     {
         string[] playerNames = new string[PhotonNetwork.CountOfPlayers];
         for (int i = 0; i < PhotonNetwork.CountOfPlayers; i++)
@@ -84,7 +98,7 @@ public class OnlineGameManager : MonoBehaviourPun
         }
         return playerNames;
     }
-    public int GetCountOfPlayers() 
+    public int GetCountOfPlayers()
     {
         return PhotonNetwork.CountOfPlayers;
     }
@@ -93,9 +107,9 @@ public class OnlineGameManager : MonoBehaviourPun
     //UI
 
     [PunRPC]
-    public void YesAndNOAdventurer() 
+    public void YesAndNOAdventurer()
     {
-        if(!PlayerManager.Instance.ChecksIFSelectedByGM())
+        if (!PlayerManager.Instance.ChecksIFSelectedByGM())
             UIAdventurerScreenManager.Instance.ActivateYesOrNoChooseAdventurer();
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cleric : PlayerClass
 {
+    public override string abilityDescription { get; protected set; } = "Can negate an ability";
+
     [ContextMenu("Ability")]
     public void Ability()
     {

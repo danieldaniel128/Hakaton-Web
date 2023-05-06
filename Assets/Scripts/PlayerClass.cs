@@ -9,6 +9,7 @@ public abstract class PlayerClass
     public bool isImposter { get; protected set; }
     public bool isTargetable { get; protected set; } = true;
     public bool isUsingAbility { get; protected set; }
+    public abstract string abilityDescription { get; protected set; }
     public Vote vote { get; protected set; }
     [SerializeField] public PlayerClass targetPlayer;// { get; protected set; }
     [SerializeField] protected Sprite classSprite;

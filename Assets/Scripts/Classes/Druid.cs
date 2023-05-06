@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Druid : PlayerClass
 {
+    public override string abilityDescription { get; protected set; } = "Can replenish a party member's ability when GMing";
+
     [ContextMenu("Ability")]
     public void Ability()
     {

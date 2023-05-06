@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Wizard : PlayerClass
 {
+    public override string abilityDescription { get; protected set; } = "Turns the vote anonymous";
+
     [ContextMenu("Ability")]
     public void Ability()
     {

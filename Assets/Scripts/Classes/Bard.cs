@@ -8,7 +8,7 @@ public class Bard : PlayerClass
     //Can control the vote of another party member
     //flips the vote or just chooses it?
     public bool charmTo { get; private set; }
-
+    public override string abilityDescription { get; protected set; } = "Can persuade a party member to change their vote";
 
     [ContextMenu("charm")]
     public void CharmYay()

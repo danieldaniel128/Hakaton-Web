@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rogue : PlayerClass
 {
+    public override string abilityDescription { get; protected set; } = "Can disguise to appear as a different player";
+
     [ContextMenu("Disguise")]
     public void Ability()
     {
