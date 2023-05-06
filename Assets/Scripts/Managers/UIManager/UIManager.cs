@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +41,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        LoadScreen();
+        LoadScreenAndButton();
     }
 
     public void UpdatePlayerIdAndNickName(string str) 
@@ -61,6 +62,7 @@ public class UIManager : MonoBehaviour
     public void ChangeCurrentGameMaster()
     {
         OnlineGameManager.Instance.photonView.RPC("UpdateGameMaster", RpcTarget.AllViaServer);
+        LoadScreen();
     }
 
 
@@ -90,7 +92,7 @@ public class UIManager : MonoBehaviour
         AdventureScreenPanel.SetActive(true);
     }
 
-    void LoadScreen() 
+    void LoadScreenAndButton() 
     {
         for (int i = 0; i < OnlineGameManager.Instance.GetCountOfPlayers(); i++)
         {
@@ -100,6 +102,13 @@ public class UIManager : MonoBehaviour
             image.sprite = ImageSpriteBtn;
             Button button = newButtonGameObject.AddComponent<Button>();
             RectTransform rectTransformBtn = newButtonGameObject.GetComponent<RectTransform>();
+            GameObject TextPlayer = new GameObject();
+            TextPlayer.transform.SetParent(rectTransformBtn, false);
+            TextMeshProUGUI playerName = TextPlayer.AddComponent<TextMeshProUGUI>();
+            playerName.text = OnlineGameManager.Instance.GetListOfActivePlayers()[i];
+            playerName.enableAutoSizing = true;
+            playerName.autoSizeTextContainer=true;
+            playerName.color= Color.black;
             ChoosePlayersButtons.Add(button);
             rectTransformBtn.anchoredPosition = rectTransformBtn.anchoredPosition;
 
@@ -114,6 +123,18 @@ public class UIManager : MonoBehaviour
         {
             ActivateAdventureScreen();
             selectorTransform.gameObject.SetActive(false);
+        }
+    }
+
+    void LoadScreen()
+    {
+        if (OnlineGameManager.Instance.CurrentGameMaster == OnlineGameManager.Instance.MyPlayerID)
+        {
+            ActivateGMScreen();
+        }
+        else
+        {
+            ActivateAdventureScreen();
         }
     }
 }
