@@ -89,7 +89,7 @@ public class OnlineGameManager : MonoBehaviourPun
     public void YesAndNOAdventurer() 
     {
         if(!PlayerManager.Instance.ChecksIFSelectedByGM())
-            UIAdventurerScreenManager.Instance
+            UIAdventurerScreenManager.Instance.ActivateYesOrNoChooseAdventurer();   
     }
 
 
