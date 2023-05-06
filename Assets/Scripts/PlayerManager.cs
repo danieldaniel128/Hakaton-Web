@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviourPun
     public bool IsGameMaster = false;
     public int SelectedPlayersCount=0;
     public int[] SelectedPlayers = new int[3];//maybe devide by two of max or value from outside
+    public bool IsSelectedPlayer;
     PlayerClass PlayerClass;//=casting or something
 
     private void Awake()
@@ -20,6 +21,16 @@ public class PlayerManager : MonoBehaviourPun
             Destroy(gameObject);
     }
    
+    public bool ChecksIFSelectedByGM() 
+    {
+        foreach (var player in OnlineGameManager.Instance.SelectedPlayers)
+        {
+            if(player== PlayerID)
+                return true;
+        }
+        return false;
+    }
+
     public void PlayerDataInisilize() 
     {
         PlayerID = OnlineGameManager.Instance.MyPlayerID;
