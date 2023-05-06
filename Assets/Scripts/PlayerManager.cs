@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviourPun
 {
-    public PlayerManager Instance;
+    public static PlayerManager Instance;
     public int PlayerID;
+    public bool IsGameMaster = false;
+    public int SelectedPlayersCount=0;
+    public int[] SelectedPlayers = new int[3];//maybe devide by two of max or value from outside
+    PlayerClass PlayerClass;//=casting or something
 
     private void Awake()
     {
@@ -15,9 +19,11 @@ public class PlayerManager : MonoBehaviourPun
         else
             Destroy(gameObject);
     }
-    private void Start()
+   
+    public void PlayerDataInisilize() 
     {
         PlayerID = OnlineGameManager.Instance.MyPlayerID;
-
+        if (OnlineGameManager.Instance.CurrentGameMaster == PlayerID)
+            IsGameMaster = true;
     }
 }

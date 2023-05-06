@@ -30,6 +30,7 @@ public class OnlineGameManager : MonoBehaviourPun
     private void Start()
     {
         MyPlayerID = PhotonNetwork.LocalPlayer.ActorNumber;
+        PlayerManager.Instance.PlayerDataInisilize();
     }
    
 

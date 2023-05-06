@@ -31,16 +31,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject ButtonPrefab;
 
     [SerializeField] Vector2 startGenerateButtonPosition;
-    private void Awake()
+    
+
+    private void Start()
     {
         if (Instance == null)
             Instance = this;
         else
             Destroy(gameObject);
-    }
-
-    private void Start()
-    {
         LoadScreenAndButton();
     }
     private void Update()
@@ -105,9 +103,10 @@ public class UIManager : MonoBehaviour
             newButtonGameObject.name = "PlayerButton" + (i + 1);
             newButtonGameObject.transform.SetParent(ChoosePlayerButtonLocations[i], false);
             Button button = newButtonGameObject.GetComponent<Button>();
-            RectTransform rectTransformBtn = newButtonGameObject.GetComponent<RectTransform>();
+            //RectTransform rectTransformBtn = newButtonGameObject.GetComponent<RectTransform>();
             TextMeshProUGUI playerName = newButtonGameObject.GetComponentInChildren<TextMeshProUGUI>();
             playerName.text = OnlineGameManager.Instance.GetListOfActivePlayers()[i];
+            button.onClick.AddListener(delegate { SendIdToManager(playerName.text); });
             ChoosePlayersButtons.Add(button);
 
             //newButtonGameObject.transform.parent = GameMasterScreenPanal.transform;
@@ -123,6 +122,26 @@ public class UIManager : MonoBehaviour
             ActivateAdventureScreen();
             selectorTransform.gameObject.SetActive(false);
         }
+    }
+
+    public void SendIdToManager(string selectPlayerName) 
+    {
+        string[] playerNames = OnlineGameManager.Instance.GetListOfActivePlayers();
+        Debug.Log("selectPlayerButton: " + selectPlayerName);
+        for (int i = 0; i < OnlineGameManager.Instance.GetCountOfPlayers(); i++)
+        {
+            if (playerNames[i].Equals(selectPlayerName))
+            { 
+                PlayerManager.Instance.SelectedPlayers[PlayerManager.Instance.SelectedPlayersCount++] = i + 1;
+                break;
+            }
+        }
+        if(PlayerManager.Instance.SelectedPlayers.Length== PlayerManager.Instance.SelectedPlayersCount)
+            foreach (Button button in ChoosePlayersButtons)
+            {
+                button.interactable = false;
+            }
+
     }
 
     void LoadScreen()
