@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerClass : MonoBehaviour
+public abstract class PlayerClass
 {
     int ID;
     [SerializeField] bool isAbilityReady;

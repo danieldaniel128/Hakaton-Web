@@ -19,6 +19,7 @@ public class OnlineGameManager : MonoBehaviourPun
     public int[] SelectedPlayers;
     bool PatricipateInMission;
 
+    public List<PlayerClass> PlayerClasses = new();
     private void Awake()
     {
         if (Instance == null)
@@ -30,6 +31,12 @@ public class OnlineGameManager : MonoBehaviourPun
     {
         MyPlayerID = PhotonNetwork.LocalPlayer.ActorNumber;
         PlayerManager.Instance.PlayerDataInisilize();
+    }
+
+    [PunRPC]
+    public void UpdatePlayerClasses(PlayerClass playerClass)
+    {
+        PlayerClasses.Add(playerClass);
     }
 
     [PunRPC]
